@@ -80,12 +80,12 @@ function addScore() {
         }
         validated = false;
     }
-    if (score.val() === '' || isNaN(score.val())) {
-        if (isNaN(score.val())) {
-            $("#score_span").text(" Invalid");
+    if (score.val() === '' || isNaN(score.val()) || score.val() < 0 || score.val() > 100) {
+        if (score.val() === '') {
+            $("#score_span").text(" Required");
         }
         else {
-            $("#score_span").text(" Required");
+            $("#score_span").text(" Invalid");
         }
         validated = false;
     }
