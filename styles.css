@@ -49,6 +49,9 @@ input[type="button"]  {
     margin: 2px 2px;
     cursor: pointer;
 }
+.validation {
+    color: red;
+}
 p {
 	margin: 0;
 }

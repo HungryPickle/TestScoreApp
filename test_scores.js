@@ -67,14 +67,32 @@ function initializeScoresTable() {
 function addScore() {
     let score = $('#score');
     let name = $('#name');
-    if (score.val() === '' || name.val() === '') {
-        alert('Name and score must have values');
+    let validated = true;
+    let pattern = /[^A-Za-z ]/;
+
+    resetInputs();
+    if (name.val() === '' || pattern.test(name.val())) {
+        if (name.val() === '') {
+            $("#name_span").text(" Required");
+        }
+        else {
+            $("#name_span").text(" Invalid");
+        }
+        validated = false;
+    }
+    if (score.val() === '' || isNaN(score.val())) {
+        if (isNaN(score.val())) {
+            $("#score_span").text(" Invalid");
+        }
+        else {
+            $("#score_span").text(" Required");
+        }
+        validated = false;
+    }
+    if (!validated) {
         return;
     }
-    if (isNaN(parseInt(score.val())) || score.val() < 0 || score.val() > 100) {
-        alert('Score must be a number between 0 and 100');
-        return;
-    }
+
     scoresArr.push(parseInt(score.val()));
     namesArr.push($("#name").val());
     initializeScoresTable();
@@ -84,6 +102,11 @@ function addScore() {
     $('#scores').show();
     $('#results').show();
     name.focus();
+}
+
+function resetInputs() {
+    $("#name_span").text(" *"); 
+    $("#score_span").text(" *"); 
 }
 
 window.onload = function () {
