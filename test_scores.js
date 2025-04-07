@@ -71,7 +71,7 @@ function addScore() {
         alert('Name and score must have values');
         return;
     }
-    if (score.val() < 0 || score.val() > 100) {
+    if (isNaN(parseInt(score.val())) || score.val() < 0 || score.val() > 100) {
         alert('Score must be a number between 0 and 100');
         return;
     }
